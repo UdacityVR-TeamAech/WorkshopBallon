@@ -30,6 +30,7 @@
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
         <meta-data android:name="IMMERSIVE_MODE" android:value="true" />
+        <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="true" />
     </application>
     <!-- Set target sdk version to Lollipop to prevent issues with Marshmallow's runtime permissions. -->
     <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="24" />
