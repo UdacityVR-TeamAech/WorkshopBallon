@@ -31,9 +31,9 @@ public class BallonInteraction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		redBalloon = GameObject.Find("RedBalloonSphere");
-		blueBalloon = GameObject.Find("BlueBalloonSphere");
-		greenBalloon = GameObject.Find("GreenBalloonSphere");
+		redBalloon = GameObject.Find("RedBalloonWrapper");
+		blueBalloon = GameObject.Find("BlueBalloonWrapper");
+		greenBalloon = GameObject.Find("GreenBalloonWrapper");
 		previewCube = GameObject.Find("previewCube");
 		redLabel = GameObject.Find ("RedcolorVal");
 		greenLabel = GameObject.Find ("GreenColorVal");
