@@ -47,6 +47,7 @@ public class BallonInteraction : MonoBehaviour {
 		updateLabels ();
 		micI.InitMircophone ();
 		micState = MicState.INIT;
+		this.startMicIfNeeded();
 	}
 
 	void updateLabels(){
@@ -58,19 +59,7 @@ public class BallonInteraction : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (startMic & (micState != MicState.UPDATED)) {
-			Debug.Log ("in start update micro");
-			micI.StartMicrophone ();
-			micState = MicState.UPDATED;
-			startMic = false;
-		}
-			
-
-		if (stopMic) {
-			micI.StopMicrophone();
-			micState = MicState.STOPPED;
-			stopMic = false;
-		}
+		startMicIfNeeded();
 
 		if (micState == MicState.UPDATED && selectedBalloon != Balloon.NONE) {
 
@@ -86,39 +75,7 @@ public class BallonInteraction : MonoBehaviour {
 			}
 
 			updateLabels ();
-		}
-//
-//		switch (micState) {
-//		case MicState.INIT:
-//			break;
-//		case MicState.STOPPED:
-//			break;
-//		case MicState.UPDATED:
-//			break;
-//		}
-//
-//		switch (selectedBalloon) {
-//		case Balloon.NONE:
-//			Debug.Log ("no ballon selected");
-//
-//			break;
-//		case Balloon.RED:
-//			Debug.Log ("red ballon selected");
-//
-//			break;
-//		case Balloon.BLUE:
-//			Debug.Log ("blue ballon selected");
-//
-//			break;
-//		case Balloon.GREEN:
-//			Debug.Log ("green ballon selected");
-//
-//			break;
-//		}
-//
-//		Debug.Log("After switch");
-//
-//		
+		}		
 	}
 
 	public void deflateBalloon(Balloon selBallon, int step){
@@ -206,7 +163,16 @@ public class BallonInteraction : MonoBehaviour {
 	public void deselectBalloon(){
 		Debug.Log (classTag + " deslectColor");
 		selectedBalloon = Balloon.NONE;
-		stopMic = true;
 
+	}
+
+	public void startMicIfNeeded()
+	{
+		if (startMic & (micState != MicState.UPDATED)) {
+			Debug.Log ("in start update micro");
+			micI.StartMicrophone ();
+			micState = MicState.UPDATED;
+			startMic = false;
+		}
 	}
 }
